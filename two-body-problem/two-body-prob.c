@@ -163,18 +163,18 @@ int main(int argc, char **argv) {
     fprintf(fp, "# Step size: %g\n", step_size);
     fprintf(fp, "# Reading every %ld steps\n", read_steps);
     fprintf(fp, "# \t\tstep\t\tt\t\t\tr\t\ttheta\t\tpr\n");
-    fprintf(fp, "\t%10ld\t%g\t%g\t%g\t%g\n", 0, t, r, th, pr);
+    fprintf(fp, "\t%10d\t%g\t%g\t%g\t%g\n", 0, t, r, th, pr);
 
     time_ini = time(NULL);
     printf("Starting simulation:\n");
-    printf("[%s]\tsteps taken=%10d\t\tsteps recorded=%10ld\tt=%g\t\t\tr=%g\tth=%g\tpr=%g\n", argv[0], 0, 0, t, r, th, pr);
+    printf("[%s]\tsteps taken=%10d\t\tsteps recorded=%10d\tt=%g\t\t\tr=%g\tth=%g\tpr=%g\n", argv[0], 0, 0, t, r, th, pr);
     for(long int i=1; i<=steps; i++) {
         iterate_next(&t, &r, &th, &pr, L, m, step_size);
         if(!(i%read_steps)) {
             fprintf(fp, "\t%ld\t%g\t%g\t%g\t%g\n", i, t, r, th, pr);
         }
         if(!(i%1000000)) {
-            printf("[%s]\tsteps taken=%10ld\t\tsteps read=%10ld\tt=%g\tr=%g\tth=%g\tpr=%g\n", argv[0], i, (int)floor(i/100), t, r, th, pr);
+            printf("[%s]\tsteps taken=%10ld\t\tsteps read=%10d\tt=%g\tr=%g\tth=%g\tpr=%g\n", argv[0], i, (int)floor(i/100), t, r, th, pr);
         }
     }
     fclose(fp);
